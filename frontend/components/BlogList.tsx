@@ -1,6 +1,8 @@
 "use client";
 import { assets, blog_data } from "@/public/assests/assets";
 import Image from "next/image";
+import Link from "next/link";
+import { Router } from "next/router";
 import React, { useState } from "react";
 
 const BlogList = () => {
@@ -45,7 +47,8 @@ const BlogList = () => {
         {blog_data
           .filter((item) => category === "All" || item.category === category)
           .map((item, index) => (
-            <div
+            <Link
+              href={`/blogs/${item.id}`}
               key={index}
               className="w-full sm:max-w-[350px] bg-white border border-black hover:shadow-[-7px_7px_0px_#000000] cursor-pointer"
             >
@@ -67,7 +70,7 @@ const BlogList = () => {
                   <Image src={assets.arrow} className="size-3" alt="" />
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
       </div>
     </div>
