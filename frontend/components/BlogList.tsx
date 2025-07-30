@@ -7,36 +7,36 @@ const BlogList = () => {
   const [category, setCategory] = useState("All");
   return (
     <div>
-      <div className="flex justify-center gap-4">
+      <div className="flex justify-center gap-4 mx-2">
         <button
           onClick={() => setCategory("All")}
           className={`${
-            category === "All" && "bg-black text-white"
-          } px-3 py-1 cursor-pointer`}
+            category === "All" && "bg-black text-white px-3 py-1 "
+          } cursor-pointer`}
         >
           All
         </button>
         <button
           onClick={() => setCategory("Technology")}
           className={`${
-            category === "Technology" && "bg-black text-white"
-          } px-3 py-1 cursor-pointer`}
+            category === "Technology" && "bg-black text-white px-3 py-1 "
+          } cursor-pointer`}
         >
           Technology
         </button>
         <button
           onClick={() => setCategory("Startup")}
           className={`${
-            category === "Startup" && "bg-black text-white"
-          } px-3 py-1 cursor-pointer`}
+            category === "Startup" && "bg-black text-white px-3 py-1 "
+          } cursor-pointer`}
         >
           Startup
         </button>
         <button
           onClick={() => setCategory("Lifestyle")}
           className={`${
-            category === "Lifestyle" && "bg-black text-white"
-          } px-3 py-1 cursor-pointer`}
+            category === "Lifestyle" && "bg-black text-white px-3 py-1 "
+          } cursor-pointer`}
         >
           Lifestyle
         </button>

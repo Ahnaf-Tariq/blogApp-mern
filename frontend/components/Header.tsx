@@ -7,8 +7,8 @@ const Header = () => {
     <div className="px-5 py-5 md:px-12 lg:px-28">
       <div className="flex justify-between items-center gap-2">
         <Image src={assets.logo} alt="logo" />
-        <button className="flex items-center gap-2 border border-black font-serif px-4 py-2 shadow-[-7px_7px_0px_#000000] cursor-pointer">
-          Start here <Image src={assets.arrow} alt="" className="size-4" />
+        <button className="flex items-center gap-2 border border-black font-serif px-2 py-1 sm:px-4 sm:py-2 text-sm sm:text-base shadow-[-7px_7px_0px_#000000] cursor-pointer">
+          Start here <Image src={assets.arrow} alt="" className="size-4 hidden sm:block" />
         </button>
       </div>
       <div className="text-center my-10">
