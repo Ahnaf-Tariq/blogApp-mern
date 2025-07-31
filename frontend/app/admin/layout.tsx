@@ -1,3 +1,4 @@
+import Navbar from "@/components/admin components/Navbar";
 import Sidebar from "@/components/admin components/Sidebar";
 
 export default function Layout({
@@ -7,10 +8,13 @@ export default function Layout({
 }>) {
   return (
     <>
-      <div>
+      <div className="flex">
         <Sidebar />
+        <div className="flex flex-col w-full">
+          <Navbar />
+          {children}
+        </div>
       </div>
-      {children}
     </>
   );
 }
