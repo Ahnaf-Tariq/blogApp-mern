@@ -3,6 +3,7 @@ import React from "react";
 import { assets } from "@/public/assests/assets";
 
 const Header = () => {
+  
   return (
     <div className="px-5 py-5 md:px-12 lg:px-28">
       <div className="flex justify-between items-center gap-2">
