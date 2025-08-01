@@ -4,12 +4,21 @@ import blogModel from "../models/BlogModel.js";
 
 const addBlog = async (req, res) => {
   try {
-    const { title, description, category } = req.body;
-    const image = req.file;
+    const { title, description, category, author } = req.body;
+    const files = req.files;
 
-    if (!image) return res.status(400).json({ msg: "No image provided" });
+    if (!files || !files.image || !files.authorImage) {
+      return res.send({ success: false, msg: "Both images are required" });
+    }
 
-    const result = await cloudinary.uploader.upload(image.path, {
+    const blogImagePath = files.image[0].path;
+    const authorImagePath = files.authorImage[0].path;
+
+    const blogImageResult = await cloudinary.uploader.upload(blogImagePath, {
+      resource_type: "image",
+    });
+
+    const authorImageResult = await cloudinary.uploader.upload(authorImagePath, {
       resource_type: "image",
     });
 
@@ -17,14 +26,15 @@ const addBlog = async (req, res) => {
       title,
       description,
       category,
-      image: result.secure_url
+      author,
+      image: blogImageResult.secure_url,      
+      authorImage: authorImageResult.secure_url,
     });
 
     res.json({ success: true, blog });
-
   } catch (error) {
     console.log(error);
-    res.json({success:false, error})
+    res.json({ success: false, error });
   }
 };
 
