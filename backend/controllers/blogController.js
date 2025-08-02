@@ -51,4 +51,20 @@ const getBlog = async (req, res) => {
   }
 };
 
-export { addBlog, getBlog };
+const getSingleBlog = async (req, res) => {
+  try {
+    const { id } = req.body;
+    const singleBlog = await blogModel.findById(id);
+
+    if (!singleBlog) {
+      return res.json({ success: false, msg: "Blog not found!" });
+    }
+    
+    res.json({ success: true, singleBlog });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, msg: error.message });
+  }
+};
+
+export { addBlog, getBlog, getSingleBlog };
