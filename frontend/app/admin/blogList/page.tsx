@@ -3,8 +3,19 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
+interface BlogData {
+  _id: string;
+  title: string;
+  description: string;
+  category: string;
+  author: string;
+  authorImage: string;
+  image: string;
+  date: string;
+}
+
 const page = () => {
-  const [blogsData, setBlogsData] = useState([]);
+  const [blogsData, setBlogsData] = useState<BlogData[]>([]);
 
   const fetchData = async () => {
     try {
@@ -38,7 +49,7 @@ const page = () => {
             <p className="flex items-center gap-1"><img className="size-6 rounded-full" src={blog.image} alt="" />{blog.author}</p>
             <p>{blog.title}</p>
             <p>{blog.category}</p>
-            <p>{blog.date}</p>
+            <p>{new Date(blog.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
             <p className="text-right md:text-center cursor-pointer text-lg">X</p>
           </div>
         ))}
