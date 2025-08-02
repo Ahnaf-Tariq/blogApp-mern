@@ -1,5 +1,5 @@
 import express from "express";
-import { addBlog } from "../controllers/blogController.js";
+import { addBlog, getBlog } from "../controllers/blogController.js";
 import upload from "../middleware/multer.js";
 
 const blogRouter = express.Router();
@@ -12,5 +12,6 @@ blogRouter.post(
   ]),
   addBlog
 );
+blogRouter.get("/list", getBlog);
 
 export default blogRouter;

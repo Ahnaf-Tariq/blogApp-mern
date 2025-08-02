@@ -1,6 +1,5 @@
 import cloudinary from "../middleware/cloudinary.js";
 import blogModel from "../models/BlogModel.js";
-// import { v2 as cloudinary } from "cloudinary";
 
 const addBlog = async (req, res) => {
   try {
@@ -18,24 +17,38 @@ const addBlog = async (req, res) => {
       resource_type: "image",
     });
 
-    const authorImageResult = await cloudinary.uploader.upload(authorImagePath, {
-      resource_type: "image",
-    });
+    const authorImageResult = await cloudinary.uploader.upload(
+      authorImagePath,
+      {
+        resource_type: "image",
+      }
+    );
 
-    const blog = await blogModel.create({
+    await blogModel.create({
       title,
       description,
       category,
       author,
-      image: blogImageResult.secure_url,      
+      image: blogImageResult.secure_url,
       authorImage: authorImageResult.secure_url,
     });
 
-    res.json({ success: true, blog });
+    res.json({ success: true, msg: "Blog Added" });
   } catch (error) {
     console.log(error);
-    res.json({ success: false, error });
+    res.json({ success: false, msg: error.message });
   }
 };
 
-export { addBlog };
+const getBlog = async (req, res) => {
+  try {
+    const getAllBlogs = await blogModel.find({});
+
+    res.json({ success: true, getAllBlogs });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, msg: error.message });
+  }
+};
+
+export { addBlog, getBlog };
