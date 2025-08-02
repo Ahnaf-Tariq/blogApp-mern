@@ -1,5 +1,7 @@
 import Navbar from "@/components/admin components/Navbar";
 import Sidebar from "@/components/admin components/Sidebar";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Layout({
   children,
@@ -15,6 +17,7 @@ export default function Layout({
           {children}
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

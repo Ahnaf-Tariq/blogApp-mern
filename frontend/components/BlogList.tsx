@@ -2,7 +2,6 @@
 import { assets, blog_data } from "@/public/assests/assets";
 import Image from "next/image";
 import Link from "next/link";
-import { Router } from "next/router";
 import React, { useState } from "react";
 
 const BlogList = () => {
