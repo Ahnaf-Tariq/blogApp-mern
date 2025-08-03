@@ -31,8 +31,8 @@ const page = () => {
       if (response.data.success) {
         toast.success(response.data.msg);
         setTitle("");
-        setDescription("");
-        setCategory("");
+        // setDescription("");
+        setCategory("Startup");
         setAuthor("");
         setImage(null);
         setAuthorImage(null);

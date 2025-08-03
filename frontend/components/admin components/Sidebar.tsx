@@ -15,19 +15,19 @@ const Sidebar = () => {
             href={"/admin/addProduct"}
             className="flex items-center gap-2 border-2 border-black px-2 py-1 shadow-[-5px_5px_0px_#000000]"
           >
-            <Image src={assets.add_icon} alt="" /> Add Blog
+            <Image src={assets.add_icon} alt="" /> <span className="hidden sm:block">Add Blog</span>
           </Link>
           <Link
             href={"/admin/blogList"}
             className="flex items-center gap-2 border-2 border-black px-2 py-1 shadow-[-5px_5px_0px_#000000]"
           >
-            <Image src={assets.blog_icon} alt="" /> Blog Lists
+            <Image src={assets.blog_icon} alt="" /> <span className="hidden sm:block">Blog Lists</span>
           </Link>
           <Link
             href={"/admin/subscriptions"}
             className="flex items-center gap-2 border-2 border-black px-2 py-1 shadow-[-5px_5px_0px_#000000]"
           >
-            <Image src={assets.email_icon} alt="" /> Subscriptions
+            <Image src={assets.email_icon} alt="" /> <span className="hidden sm:block">Subscriptions</span>
           </Link>
         </div>
       </div>

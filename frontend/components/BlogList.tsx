@@ -1,11 +1,38 @@
 "use client";
 import { assets, blog_data } from "@/public/assests/assets";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
+interface BlogData {
+  _id: string;
+  title: string;
+  description: string;
+  category: string;
+  author: string;
+  authorImage: string;
+  image: string;
+  date: string;
+}
 
 const BlogList = () => {
   const [category, setCategory] = useState("All");
+  const [blogs, setBlogs] = useState<BlogData[]>([]);
+
+  const fetchBlogs = async () => {
+    try {
+      const response = await axios.get("http://localhost:4000/api/blog/list");
+      console.log(response.data);
+      setBlogs(response.data.getAllBlogs);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
   return (
     <div>
       <div className="flex justify-center gap-4 mx-2">
@@ -43,17 +70,19 @@ const BlogList = () => {
         </button>
       </div>
       <div className="grid sm:grid-cols-[1fr_1fr] md:grid-cols-[1fr_1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr] gap-2 gap-y-8 m-10">
-        {blog_data
+        {blogs
           .filter((item) => category === "All" || item.category === category)
           .map((item, index) => (
             <Link
-              href={`/blogs/${item.id}`}
+              href={`/blogs/${item._id}`}
               key={index}
               className="w-full sm:max-w-[350px] bg-white border border-black hover:shadow-[-7px_7px_0px_#000000] cursor-pointer"
             >
               <Image
                 src={item.image}
                 alt=""
+                width={400} // Set according to your layout
+                height={250}
                 className="border-b border-black"
               />
               <p className="bg-black text-white text-sm ml-3 mt-4 px-2 inline-block">

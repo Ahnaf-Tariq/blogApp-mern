@@ -1,6 +1,7 @@
 "use client";
 import Footer from "@/components/Footer";
 import { assets, blog_data } from "@/public/assests/assets";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { use, useEffect, useState } from "react";
@@ -15,10 +16,14 @@ const page = ({ params }: PageProps) => {
   const { id } = use(params);
   const [data, setData] = useState<any>(null);
 
-  const fetchData = () => {
-    const find = blog_data.find((item) => item.id === Number(id));
-    setData(find);
-    console.log(find);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`http://localhost:4000/api/blog/${id}`);
+      console.log(response.data);
+      setData(response.data.singleBlog);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -45,15 +50,23 @@ const page = ({ params }: PageProps) => {
             {data.title}
           </h1>
           <Image
-            src={data.author_img}
+            src={data.authorImage}
+            width={80}
+            height={80}
             alt=""
-            className="size-20 mx-auto mt-8 border-2 border-white rounded-full"
+            className="mx-auto mt-8 border-2 border-white rounded-full"
           />
           <p className="font-semibold mt-1 pb-2 text-lg">{data.author}</p>
         </div>
       </div>
       <div className="max-w-[800px] md:mx-auto mx-5 mb-10 mt-[-80px]">
-        <Image src={data.image} alt="" className="border-4 border-white" />
+        <Image
+          src={data.image}
+          width={800}
+          height={400}
+          alt=""
+          className="border-4 border-white"
+        />
         <h1 className="font-semibold my-6 text-xl sm:text-2xl">
           Introduction:
         </h1>
