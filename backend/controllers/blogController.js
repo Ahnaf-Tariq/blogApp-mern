@@ -53,13 +53,12 @@ const getBlog = async (req, res) => {
 
 const getSingleBlog = async (req, res) => {
   try {
-    const { id } = req.body;
-    const singleBlog = await blogModel.findById(id);
+    const singleBlog = await blogModel.findById(req.params.id);
 
     if (!singleBlog) {
       return res.json({ success: false, msg: "Blog not found!" });
     }
-    
+
     res.json({ success: true, singleBlog });
   } catch (error) {
     console.log(error);
@@ -67,4 +66,16 @@ const getSingleBlog = async (req, res) => {
   }
 };
 
-export { addBlog, getBlog, getSingleBlog };
+const deleteSingle = async (req, res) => {
+  try {
+    const { id } = req.body;
+    await blogModel.findByIdAndDelete(id);
+
+    res.json({ success: true, msg: "Product Removed" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, msg: error.message });
+  }
+};
+
+export { addBlog, getBlog, getSingleBlog, deleteSingle };
