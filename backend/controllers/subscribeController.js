@@ -6,7 +6,7 @@ const addEmail = async (req, res) => {
 
     await subscribeModel.create({ email });
 
-    res.json({success:true,msg: 'Email subscribed'})
+    res.json({ success: true, msg: "Email subscribed" });
   } catch (error) {
     console.log(error);
     res.json({ success: true, msg: error.message });
@@ -15,6 +15,9 @@ const addEmail = async (req, res) => {
 
 const listEmail = async (req, res) => {
   try {
+    const emails = await subscribeModel.find({});
+
+    res.json({ success: true, emails });
   } catch (error) {
     console.log(error);
     res.json({ success: true, msg: error.message });
