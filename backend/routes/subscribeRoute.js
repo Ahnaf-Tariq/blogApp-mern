@@ -8,7 +8,7 @@ import {
 const subscribeRouter = express.Router();
 
 subscribeRouter.post("/add", addEmail);
-subscribeRouter.post("/list", listEmail);
+subscribeRouter.get("/list", listEmail);
 subscribeRouter.post("/delete", removeEmail);
 
 export default subscribeRouter;

@@ -50,7 +50,7 @@ const page = () => {
   }, []);
   return (
     <div className="my-8 mx-12">
-      <p className="py-2">All Blogs List</p>
+      <p className="py-2 text-lg font-semibold">All Blogs List</p>
       <div className="flex flex-col gap-2 border border-black">
         <div className="hidden md:grid grid-cols-[2fr_3fr_1fr_1fr_1fr] items-center p-2 bg-gray-100 text-sm">
           <b>Author Name</b>
