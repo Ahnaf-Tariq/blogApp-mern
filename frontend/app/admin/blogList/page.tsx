@@ -30,6 +30,21 @@ const page = () => {
     }
   };
 
+  const removeBlog = async (id: any) => {
+    try {
+      const response = await axios.post("http://localhost:4000/api/blog/delete",{id});
+      console.log(response.data);
+      if (response.data.success) {
+        toast.success(response.data.msg);
+        await fetchData();
+      } else {
+        toast.error(response.data.msg);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Error in deleting blog");
+    }
+  };
   useEffect(() => {
     fetchData();
   }, []);
@@ -50,13 +65,20 @@ const page = () => {
             key={index}
           >
             <p className="flex items-center gap-2">
-              <img className="size-8 rounded-full" src={blog.authorImage} alt="" />
+              <img
+                className="size-8 rounded-full"
+                src={blog.authorImage}
+                alt=""
+              />
               {blog.author}
             </p>
             <p>{blog.title}</p>
             <p>{blog.category}</p>
             <p>{new Date(blog.date).toDateString()}</p>
-            <p className="text-right md:text-center cursor-pointer text-lg">
+            <p
+              onClick={() => removeBlog(blog._id)}
+              className="text-right md:text-center cursor-pointer text-lg"
+            >
               X
             </p>
           </div>
