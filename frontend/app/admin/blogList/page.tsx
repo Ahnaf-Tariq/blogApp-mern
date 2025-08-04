@@ -32,7 +32,10 @@ const page = () => {
 
   const removeBlog = async (id: string) => {
     try {
-      const response = await axios.post("http://localhost:4000/api/blog/delete",{id});
+      const response = await axios.post(
+        "http://localhost:4000/api/blog/delete",
+        { id }
+      );
       console.log(response.data);
       if (response.data.success) {
         toast.success(response.data.msg);
@@ -61,23 +64,33 @@ const page = () => {
         </div>
         {blogsData.map((blog, index) => (
           <div
-            className="grid grid-cols-[2fr_3fr_1fr_1fr_1fr] items-center border-b-2 gap-2 p-2 text-sm"
+            className="flex flex-col md:grid md:grid-cols-[2fr_3fr_1fr_1fr_1fr] items-center border-b-2 gap-2 p-2 text-sm"
             key={index}
           >
             <p className="flex items-center gap-2">
+              <span className="font-semibold md:hidden">Author:</span>
               <img
-                className="size-8 rounded-full"
+                className="size-8 rounded-full hidden sm:block"
                 src={blog.authorImage}
                 alt=""
               />
               {blog.author}
             </p>
-            <p>{blog.title}</p>
-            <p>{blog.category}</p>
-            <p>{new Date(blog.date).toDateString()}</p>
+            <p className="flex items-center gap-2">
+              <span className="font-semibold md:hidden">Title:</span>
+              {blog.title}
+            </p>
+            <p className="flex items-center gap-2">
+              <span className="font-semibold md:hidden">Category:</span>
+              {blog.category}
+            </p>
+            <p className="flex items-center gap-2">
+              <span className="font-semibold md:hidden">Date:</span>
+              {new Date(blog.date).toDateString()}
+            </p>
             <p
               onClick={() => removeBlog(blog._id)}
-              className="text-right md:text-center cursor-pointer text-lg"
+              className="text-right md:text-center font-semibold md:font-normal cursor-pointer text-lg"
             >
               X
             </p>

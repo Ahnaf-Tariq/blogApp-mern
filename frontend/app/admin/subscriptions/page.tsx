@@ -13,7 +13,9 @@ const page = () => {
   const [emails, setEmails] = useState<EmailData[]>([]);
   const fetchEmail = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/subscribe/list")
+      const response = await axios.get(
+        "http://localhost:4000/api/subscribe/list"
+      );
       console.log(response.data);
       if (response.data.success) {
         setEmails(response.data.emails);
@@ -26,7 +28,10 @@ const page = () => {
 
   const removeEmail = async (id: string) => {
     try {
-      const response = await axios.post('http://localhost:4000/api/subscribe/delete',{id})
+      const response = await axios.post(
+        "http://localhost:4000/api/subscribe/delete",
+        { id }
+      );
       console.log(response.data);
       if (response.data.success) {
         toast.success(response.data.msg);
@@ -53,11 +58,17 @@ const page = () => {
         </div>
         {emails.map((email, index) => (
           <div
-            className="grid grid-cols-[3fr_2fr_1fr] border-b-2 gap-2 p-4 text-sm"
+            className="flex flex-col md:grid md:grid-cols-[3fr_2fr_1fr] items-center border-b-2 gap-2 p-4 text-sm"
             key={index}
           >
-            <p className="font-semibold">{email.email}</p>
-            <p>{new Date(email.date).toDateString()}</p>
+            <p className="flex items-center md:font-semibold gap-2">
+              <span className="font-semibold md:hidden">Email:</span>
+              {email.email}
+            </p>
+            <p className="flex items-center gap-2">
+              <span className="font-semibold md:hidden">Date:</span>
+              {new Date(email.date).toDateString()}
+            </p>
             <p
               onClick={() => removeEmail(email._id)}
               className="text-right md:text-center cursor-pointer text-lg"
