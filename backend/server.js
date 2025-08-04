@@ -15,7 +15,8 @@ app.use(cors());
 
 // routes
 app.use("/api/blog", blogRouter);
-app.use('/api/subscribe', subscribeRouter)
+app.use("/api/subscribe", subscribeRouter);
+
 // mongodb connection
 mongoose
   .connect(process.env.MONGODB_URL)
