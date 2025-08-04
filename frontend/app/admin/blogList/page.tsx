@@ -30,7 +30,7 @@ const page = () => {
     }
   };
 
-  const removeBlog = async (id: any) => {
+  const removeBlog = async (id: string) => {
     try {
       const response = await axios.post("http://localhost:4000/api/blog/delete",{id});
       console.log(response.data);

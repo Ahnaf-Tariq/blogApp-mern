@@ -26,6 +26,10 @@ const listEmail = async (req, res) => {
 
 const removeEmail = async (req, res) => {
   try {
+    const { id } = req.body;
+    await subscribeModel.findByIdAndDelete(id);
+
+    res.json({ success: true, msg: "Product Removed" });
   } catch (error) {
     console.log(error);
     res.json({ success: true, msg: error.message });

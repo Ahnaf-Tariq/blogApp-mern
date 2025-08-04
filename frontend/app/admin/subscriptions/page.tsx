@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 interface EmailData {
+  _id: string;
   email: string;
   date: string;
 }
@@ -20,6 +21,21 @@ const page = () => {
     } catch (error) {
       console.log(error);
       toast.error("Error in getting all emails subscription");
+    }
+  };
+
+  const removeEmail = async (id: string) => {
+    try {
+      const response = await axios.post('http://localhost:4000/api/subscribe/delete',{id})
+      console.log(response.data);
+      if (response.data.success) {
+        toast.success(response.data.msg);
+        await fetchEmail();
+      } else {
+        toast.error(response.data.msg);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -42,7 +58,12 @@ const page = () => {
           >
             <p className="font-semibold">{email.email}</p>
             <p>{new Date(email.date).toDateString()}</p>
-            <p className="text-right md:text-center cursor-pointer text-lg">X</p>
+            <p
+              onClick={() => removeEmail(email._id)}
+              className="text-right md:text-center cursor-pointer text-lg"
+            >
+              X
+            </p>
           </div>
         ))}
       </div>
