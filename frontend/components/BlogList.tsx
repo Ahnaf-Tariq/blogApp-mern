@@ -83,7 +83,7 @@ const BlogList = () => {
                 alt=""
                 width={400} // Set according to your layout
                 height={250}
-                className="border-b border-black"
+                className="w-full border-b border-black"
               />
               <p className="bg-black text-white text-sm ml-3 mt-4 px-2 inline-block">
                 {item.category}

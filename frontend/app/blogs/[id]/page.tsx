@@ -32,9 +32,9 @@ const page = ({ params }: PageProps) => {
   return data ? (
     <>
       <div className="bg-gray-200 px-5 py-5 md:px-12 lg:px-28">
-        <div className="flex justify-between items-center gap-2">
+        <div className="flex justify-between items-center gap-2 mx-2">
           <Link href={"/"}>
-            <Image src={assets.logo} alt="" className="w-36 sm:w-44" />
+            <Image src={assets.logo} alt="" className="w-32 sm:w-44" />
           </Link>
           <button className="flex items-center gap-2 border border-black font-serif px-2 py-1 sm:px-4 sm:py-2 text-sm sm:text-base shadow-[-7px_7px_0px_#000000] cursor-pointer">
             Get Started{" "}
@@ -54,7 +54,7 @@ const page = ({ params }: PageProps) => {
             width={80}
             height={80}
             alt=""
-            className="mx-auto mt-8 border-2 border-white rounded-full"
+            className="size-14 sm:size-20 mx-auto mt-8 border-2 border-white rounded-full"
           />
           <p className="font-semibold mt-1 pb-2 text-lg">{data.author}</p>
         </div>

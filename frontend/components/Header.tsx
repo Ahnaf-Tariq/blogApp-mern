@@ -8,7 +8,7 @@ import axios from "axios";
 const Header = () => {
   const [email, setEmail] = useState<string>("");
 
-  const handleEmailSubmit = async (e:any) => {
+  const handleEmailSubmit = async (e: any) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:4000/api/subscribe/add',{email})
@@ -26,7 +26,7 @@ const Header = () => {
   return (
     <div className="px-5 py-5 md:px-12 lg:px-28">
       <div className="flex justify-between items-center gap-2">
-        <Image src={assets.logo} alt="logo" />
+        <Image src={assets.logo} alt="logo" className="w-32 sm:w-44" />
         <button className="flex items-center gap-2 border border-black font-serif px-2 py-1 sm:px-4 sm:py-2 text-sm sm:text-base shadow-[-7px_7px_0px_#000000] cursor-pointer">
           Start here{" "}
           <Image src={assets.arrow} alt="" className="size-4 hidden sm:block" />
@@ -36,7 +36,7 @@ const Header = () => {
         <h1 className="text-3xl sm:text-5xl font-medium font-serif">
           Latest Blogs
         </h1>
-        <p className="mt-10 max-w-4xl m-auto text-xs sm:text-base">
+        <p className="mt-10 max-w-4xl m-auto text-sm sm:text-base">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut
           laudantium non eveniet quasi rerum hic dolorum deleniti ratione ullam
           numquam. Necessitatibus harum esse explicabo totam exercitationem
@@ -44,7 +44,7 @@ const Header = () => {
         </p>
         <form
           onSubmit={handleEmailSubmit}
-          className="flex justify-between max-w-md mx-auto mt-10 border border-black shadow-[-7px_7px_0px_#000000]"
+          className="flex justify-between max-w-sm sm:max-w-md mx-auto mt-10 border border-black shadow-[-7px_7px_0px_#000000]"
         >
           <input
             type="email"
@@ -55,7 +55,7 @@ const Header = () => {
           />
           <button
             type="submit"
-            className="py-2 px-4 active:bg-gray-600 active:text-white font-serif cursor-pointer"
+            className="py-1 px-3 sm:py-2 sm:px-4 active:bg-gray-600 active:text-white font-serif cursor-pointer"
           >
             Subscribe
           </button>
