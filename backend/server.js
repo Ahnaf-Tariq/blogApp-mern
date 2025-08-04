@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import "dotenv/config";
 import blogRouter from "./routes/blogRoute.js";
+import subscribeRouter from "./routes/subscribeRoute.js";
 
 const app = express();
 const port = 4000;
@@ -14,7 +15,7 @@ app.use(cors());
 
 // routes
 app.use("/api/blog", blogRouter);
-
+app.use('/api/subscribe', subscribeRouter)
 // mongodb connection
 mongoose
   .connect(process.env.MONGODB_URL)
